@@ -1,0 +1,19 @@
+{
+  "name": "medassist-ai-system",
+  "version": "1.0.0",
+  "description": "MedAssist AI System - Medical document analysis with AWS Generative AI",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "infrastructure"
+  ],
+  "scripts": {
+    "frontend": "npm run dev --workspace=frontend",
+    "infra": "npm run cdk --workspace=infrastructure",
+    "deploy": "npm run deploy --workspace=infrastructure",
+    "test": "npm run test --workspaces"
+  },
+  "keywords": ["medical", "ai", "aws", "bedrock", "rag"],
+  "author": "",
+  "license": "MIT"
+}
