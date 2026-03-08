@@ -1,168 +1,196 @@
-# 🏥 MedAssist AI
+🏥 MedAssist AI
 
-**AI-Powered Medical Document Analysis & Conversational Health Assistant**
+AI-Powered Medical Document Intelligence Platform
 
-MedAssist AI is a full-stack AI system that helps users **understand complex medical reports**.
-The system analyzes uploaded medical documents and converts them into **clear insights, dashboards, and conversational explanations**.
+MedAssist AI is a Generative AI powered medical document analysis system that helps users understand complex medical reports.
 
-It is designed for **Doctors, Patients, and ASHA Workers** to make healthcare information easier to understand.
+The platform analyzes uploaded health documents and converts them into structured insights, health dashboards, and conversational explanations.
 
----
+It is designed for Doctors, Patients, and ASHA Workers to simplify healthcare understanding.
 
-# 📌 Problem
+📌 Problem
 
-Medical reports are difficult for non-experts to interpret.
+Medical reports are often difficult for non-experts to interpret.
 
-Patients often struggle to understand values such as:
+Patients frequently struggle to understand values such as:
 
-* Blood Glucose
-* Hemoglobin
-* Cholesterol
-* Blood Pressure
-* Liver & Kidney indicators
+Blood Glucose
 
-In rural healthcare systems, **ASHA workers also lack tools** to quickly interpret reports for patients.
+Hemoglobin
 
----
+Cholesterol
 
-# 💡 Solution
+Blood Pressure
 
-MedAssist AI automatically analyzes medical documents and generates **easy-to-understand health insights using AI**.
+Liver & Kidney indicators
+
+In rural healthcare systems, ASHA workers also lack tools to quickly interpret reports for patients.
+
+This creates a knowledge gap between medical reports and actionable understanding.
+
+💡 Solution
+
+MedAssist AI bridges this gap using Generative AI and Retrieval Augmented Generation (RAG).
 
 The system:
 
-1. Extracts medical text from uploaded reports
-2. Identifies key health metrics
-3. Generates a visual health dashboard
-4. Allows users to chat with an AI assistant about the report
-5. Explains results differently for **Doctor / Patient / ASHA Worker**
+Extracts medical data from uploaded reports
 
----
+Identifies key health metrics
 
-# 🚀 Key Features
+Generates a visual health dashboard
 
-✔ Medical document upload (PDF / Image)
-✔ Automatic text extraction using AWS Textract
-✔ Health metric extraction (Glucose, Hemoglobin, Cholesterol, etc.)
-✔ AI conversational assistant
-✔ Role-based explanation system
-✔ Health dashboard with status indicators
-✔ PDF report export
+Allows users to ask questions about their report
+
+Provides role-specific explanations for doctors, patients, and community health workers
+
+🚀 Key Features
+
+✔ Medical document upload (PDF / Images)
+✔ AI-powered health metric extraction
+✔ Generative AI conversational assistant
+✔ Role-based explanations (Doctor / Patient / ASHA Worker)
+✔ Health dashboard with structured indicators
+✔ AI-driven report insights
+✔ Exportable health report summary
 ✔ Secure serverless architecture
 
----
+🧠 AI Architecture
 
-# ⚙️ System Architecture
+MedAssist AI uses a Retrieval Augmented Generation (RAG) pipeline.
 
-User uploads report → AI extracts insights → Dashboard + Chat explanation
+Workflow:
 
-```
-User Browser
-     │
-     ▼
-React Frontend
-     │
-     ▼
-AWS CloudFront / S3
-     │
-     ▼
+1️⃣ User uploads medical document
+2️⃣ Document text is extracted using AWS AI services
+3️⃣ Relevant medical context is retrieved from knowledge sources
+4️⃣ Generative AI model produces structured insights
+5️⃣ Results are presented as:
+
+Health dashboard
+
+Conversational AI responses
+
+Actionable health explanations
+
+This ensures AI responses are grounded in the user's document data.
+
+⚙️ System Architecture
+User
+ │
+ ▼
+React Web Application
+ │
+ ▼
+AWS CloudFront + S3 (Frontend Hosting)
+ │
+ ▼
 API Gateway
-     │
-     ▼
+ │
+ ▼
 AWS Lambda Functions
-     │
-     ├── Document Upload
-     ├── Text Extraction
-     ├── Dashboard Generation
-     ├── AI Chat (RAG)
-     └── PDF Export
-     │
-     ▼
-AI Processing
-     ├── Google Gemini API
-     ├── AWS Textract
-     └── Medical Knowledge Base
-     │
-     ▼
-Data Storage
-     ├── DynamoDB
-     └── Amazon S3
-```
+ │
+ ├── Upload Service
+ ├── Extraction Service
+ ├── Dashboard Generator
+ ├── RAG Chat Engine
+ └── PDF Export Service
+ │
+ ▼
+AI Processing Layer
+ ├── Document Intelligence
+ ├── Retrieval Engine
+ └── Generative AI Model
+ │
+ ▼
+Storage Layer
+ ├── DynamoDB
+ └── Amazon S3
+☁️ AWS Services Used
 
----
+MedAssist AI is built using serverless AWS infrastructure.
 
-# 🧠 AI Components
+Core services:
 
-MedAssist AI uses **Hybrid RAG (Retrieval Augmented Generation)**.
+AWS Lambda
 
-Steps:
+Amazon API Gateway
 
-1. Medical document uploaded
-2. Text extracted using AWS Textract
-3. Relevant information retrieved from document + knowledge base
-4. AI model generates explanation using Gemini API
-5. Role-specific explanation returned
+Amazon S3
 
----
+Amazon DynamoDB
 
-# 🧰 Tech Stack
+AWS Textract
 
-## Frontend
+AWS Comprehend Medical
 
-* React
-* TypeScript
-* Vite
-* TailwindCSS
+Amazon CloudFront
 
-## Backend
+AWS CloudWatch
 
-* AWS Lambda (Python)
-* AWS API Gateway
-* AWS DynamoDB
-* AWS S3
+AWS CDK
 
-## AI & Data Processing
+These services enable a scalable, secure, and fully serverless AI architecture.
 
-* Google Gemini API
-* AWS Textract
-* FAISS Vector Search
-* Hybrid RAG Architecture
+🧰 Tech Stack
+Frontend
 
-## Infrastructure
+React
 
-* AWS CDK
-* CloudWatch Monitoring
+TypeScript
 
----
+Vite
 
-# 📂 Project Structure
+TailwindCSS
 
-```
+Backend
+
+Python (AWS Lambda)
+
+REST APIs via API Gateway
+
+Serverless architecture
+
+AI Layer
+
+Retrieval Augmented Generation (RAG)
+
+Medical document processing
+
+Generative AI inference
+
+Infrastructure
+
+AWS CDK
+
+CloudWatch monitoring
+
+📂 Project Structure
 MedAssist-AI/
 │
-├── frontend/                     # React frontend application
+├── frontend/                    # React web application
 │   ├── src/
-│   │   ├── components/           # UI components
-│   │   ├── pages/                # Application pages
-│   │   ├── utils/                # Helper utilities
-│   │   └── App.tsx               # Main React app
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── utils/
+│   │   └── App.tsx
 │   └── package.json
 │
-├── lambda/                       # AWS Lambda functions
-│   ├── upload/                   # Document upload handler
-│   ├── extraction/               # Text extraction from documents
-│   ├── embedding/                # Embedding generation
-│   ├── dashboard/                # Dashboard metrics generation
-│   ├── rag/                      # Chat / RAG handler
-│   ├── export/                   # PDF export generator
-│   └── cleanup/                  # Session cleanup
+├── lambda/                      # Serverless backend functions
+│   ├── upload/                  # Document upload handler
+│   ├── extraction/              # Medical text extraction
+│   ├── embedding/               # Document processing
+│   ├── dashboard/               # Dashboard generation
+│   ├── rag/                     # AI chat engine
+│   ├── export/                  # PDF export generator
+│   └── cleanup/                 # Session cleanup
 │
-├── infrastructure/               # AWS infrastructure
+├── infrastructure/              # AWS CDK infrastructure
 │   ├── lib/
-│   │   └── medassist-stack.ts    # CDK stack
+│   │   └── medassist-stack.ts
 │   └── package.json
 │
-├── knowledge-base/               # Medical knowledge documents
+├── knowledge-base/              # Medical knowledge resources
 │   ├── diabetes.txt
 │   ├── blood-pressure.txt
 │   ├── cholesterol.txt
@@ -170,131 +198,56 @@ MedAssist-AI/
 │   └── basic-health.txt
 │
 └── README.md
-```
-
----
-
-# 🔗 API Endpoints
-
-### Upload Medical Document
-
-```
+🔗 API Endpoints
+Upload Document
 POST /upload
-```
-
-Body
-
-```
-{
-  "file": File,
-  "sessionId": "string"
-}
-```
-
----
-
-### Chat with AI Assistant
-
-```
+Chat with AI
 POST /chat
-```
-
-Body
-
-```
-{
-  "sessionId": "string",
-  "message": "string",
-  "role": "doctor | patient | asha"
-}
-```
-
----
-
-### Get Health Dashboard
-
-```
+Get Dashboard
 GET /dashboard?sessionId=<sessionId>
-```
-
----
-
-### Export Report
-
-```
+Export Report
 POST /export
-```
+🛠 Deployment
 
----
+The system uses serverless deployment on AWS.
 
-# 🛠 Setup & Deployment
+Infrastructure deployment:
 
-## Prerequisites
-
-* Node.js 18+
-* Python 3.9+
-* AWS account
-* Google Gemini API Key
-
----
-
-## Frontend Setup
-
-```
-cd frontend
-npm install
-npm run build
-```
-
----
-
-## Backend Setup
-
-```
-cd lambda
-pip install -r requirements.txt
-```
-
----
-
-## Deploy Infrastructure
-
-```
 cd infrastructure
 npm install
 cdk deploy
-```
 
----
+Frontend deployment:
 
-# 🔐 Security
+cd frontend
+npm install
+npm run build
+🔐 Security
 
-* API keys stored in environment variables
-* S3 encryption enabled
-* DynamoDB encryption at rest
-* IAM least privilege access
-* Sensitive data removed from logs
+API keys stored in environment variables
 
----
+S3 encryption enabled
 
-# 📊 Performance
+DynamoDB encryption at rest
 
-Typical response times:
+IAM least-privilege access
 
-Dashboard generation: **<500ms**
-Chat response: **~3 seconds**
-Document extraction: **1–3 seconds**
+Sensitive medical data excluded from logs
 
----
+📊 Performance
 
-# ⚠️ Disclaimer
+Typical system response times:
 
-This AI system provides **informational insights only** and does **not provide medical diagnosis**.
+Dashboard generation: <500 ms
+AI chat response: ~2-3 seconds
+Document extraction: 1-3 seconds
+
+⚠️ Disclaimer
+
+MedAssist AI provides informational insights only and does not provide medical diagnosis.
 
 Users should always consult licensed healthcare professionals.
 
----
+📜 License
 
-# 📜 License
-
-This project is provided for **educational and evaluation purposes**.
+Educational and evaluation purposes.
