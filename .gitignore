@@ -22,6 +22,7 @@ dist/
 infrastructure/cdk.out/
 infrastructure/*.js
 infrastructure/*.d.ts
+cdk.out/
 
 # Logs
 npm-debug.log*
