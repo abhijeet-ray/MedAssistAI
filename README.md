@@ -1,217 +1,300 @@
-# MedAssist AI - Medical Document Analysis System
+# 🏥 MedAssist AI
 
-A full-stack AI-powered medical document analysis system built with React, AWS Lambda, and Google Gemini API. The system extracts health metrics from medical documents and provides role-based conversational AI assistance.
+**AI-Powered Medical Document Analysis & Conversational Health Assistant**
 
-## Features
+MedAssist AI is a full-stack AI system that helps users **understand complex medical reports**.
+The system analyzes uploaded medical documents and converts them into **clear insights, dashboards, and conversational explanations**.
 
-- **Document Upload & Processing**: Upload PDF and image documents for automatic text extraction
-- **Health Metrics Extraction**: Automatically extract key health metrics (glucose, hemoglobin, cholesterol, etc.)
-- **Hybrid RAG Architecture**: Combines document embeddings with knowledge base for intelligent responses
-- **Role-Based Interface**: Customized experience for Doctors, Patients, and ASHA Workers
-- **Conversational AI**: Multi-turn chat with context awareness using Google Gemini
-- **Hindi Translation**: Support for Hindi language translation for Patient and ASHA Worker roles
-- **PDF Export**: Generate and download health reports as PDF
-- **Real-time Dashboard**: Visual display of extracted health metrics with status indicators
+It is designed for **Doctors, Patients, and ASHA Workers** to make healthcare information easier to understand.
 
-## Architecture
+---
+
+# 📌 Problem
+
+Medical reports are difficult for non-experts to interpret.
+
+Patients often struggle to understand values such as:
+
+* Blood Glucose
+* Hemoglobin
+* Cholesterol
+* Blood Pressure
+* Liver & Kidney indicators
+
+In rural healthcare systems, **ASHA workers also lack tools** to quickly interpret reports for patients.
+
+---
+
+# 💡 Solution
+
+MedAssist AI automatically analyzes medical documents and generates **easy-to-understand health insights using AI**.
+
+The system:
+
+1. Extracts medical text from uploaded reports
+2. Identifies key health metrics
+3. Generates a visual health dashboard
+4. Allows users to chat with an AI assistant about the report
+5. Explains results differently for **Doctor / Patient / ASHA Worker**
+
+---
+
+# 🚀 Key Features
+
+✔ Medical document upload (PDF / Image)
+✔ Automatic text extraction using AWS Textract
+✔ Health metric extraction (Glucose, Hemoglobin, Cholesterol, etc.)
+✔ AI conversational assistant
+✔ Role-based explanation system
+✔ Health dashboard with status indicators
+✔ PDF report export
+✔ Secure serverless architecture
+
+---
+
+# ⚙️ System Architecture
+
+User uploads report → AI extracts insights → Dashboard + Chat explanation
+
+```
+User Browser
+     │
+     ▼
+React Frontend
+     │
+     ▼
+AWS CloudFront / S3
+     │
+     ▼
+API Gateway
+     │
+     ▼
+AWS Lambda Functions
+     │
+     ├── Document Upload
+     ├── Text Extraction
+     ├── Dashboard Generation
+     ├── AI Chat (RAG)
+     └── PDF Export
+     │
+     ▼
+AI Processing
+     ├── Google Gemini API
+     ├── AWS Textract
+     └── Medical Knowledge Base
+     │
+     ▼
+Data Storage
+     ├── DynamoDB
+     └── Amazon S3
+```
+
+---
+
+# 🧠 AI Components
+
+MedAssist AI uses **Hybrid RAG (Retrieval Augmented Generation)**.
+
+Steps:
+
+1. Medical document uploaded
+2. Text extracted using AWS Textract
+3. Relevant information retrieved from document + knowledge base
+4. AI model generates explanation using Gemini API
+5. Role-specific explanation returned
+
+---
+
+# 🧰 Tech Stack
+
+## Frontend
+
+* React
+* TypeScript
+* Vite
+* TailwindCSS
+
+## Backend
+
+* AWS Lambda (Python)
+* AWS API Gateway
+* AWS DynamoDB
+* AWS S3
+
+## AI & Data Processing
+
+* Google Gemini API
+* AWS Textract
+* FAISS Vector Search
+* Hybrid RAG Architecture
+
+## Infrastructure
+
+* AWS CDK
+* CloudWatch Monitoring
+
+---
+
+# 📂 Project Structure
 
 ```
 MedAssist-AI/
-├── frontend/              # React TypeScript frontend
+│
+├── frontend/                     # React frontend application
 │   ├── src/
-│   │   ├── components/   # React components
-│   │   ├── pages/        # Page components
-│   │   ├── utils/        # Utility functions
-│   │   └── App.tsx       # Main app component
+│   │   ├── components/           # UI components
+│   │   ├── pages/                # Application pages
+│   │   ├── utils/                # Helper utilities
+│   │   └── App.tsx               # Main React app
 │   └── package.json
-├── lambda/               # AWS Lambda functions
-│   ├── upload/          # Document upload handler
-│   ├── extraction/      # Text extraction from documents
-│   ├── embedding/       # Vector embedding generation
-│   ├── dashboard/       # Dashboard metrics generation
-│   ├── rag/            # Chat/RAG handler
-│   ├── export/         # PDF export handler
-│   └── cleanup/        # Session cleanup
-├── infrastructure/       # AWS CDK infrastructure
+│
+├── lambda/                       # AWS Lambda functions
+│   ├── upload/                   # Document upload handler
+│   ├── extraction/               # Text extraction from documents
+│   ├── embedding/                # Embedding generation
+│   ├── dashboard/                # Dashboard metrics generation
+│   ├── rag/                      # Chat / RAG handler
+│   ├── export/                   # PDF export generator
+│   └── cleanup/                  # Session cleanup
+│
+├── infrastructure/               # AWS infrastructure
 │   ├── lib/
-│   │   └── medassist-stack.ts
+│   │   └── medassist-stack.ts    # CDK stack
 │   └── package.json
-├── knowledge-base/       # Medical knowledge base files
+│
+├── knowledge-base/               # Medical knowledge documents
 │   ├── diabetes.txt
 │   ├── blood-pressure.txt
 │   ├── cholesterol.txt
 │   ├── heart-health.txt
 │   └── basic-health.txt
+│
 └── README.md
 ```
 
-## Tech Stack
+---
 
-**Frontend:**
-- React 18 with TypeScript
-- Vite for build tooling
-- Vitest for testing
-- Tailwind CSS for styling
+# 🔗 API Endpoints
 
-**Backend:**
-- AWS Lambda (Python)
-- AWS API Gateway
-- AWS DynamoDB
-- AWS S3
-- AWS Textract (document extraction)
-- AWS Comprehend Medical (entity extraction)
-- Google Gemini API (AI responses)
-- FAISS (vector search)
+### Upload Medical Document
 
-**Infrastructure:**
-- AWS CDK (TypeScript)
-- CloudWatch for logging
-
-## Setup & Deployment
-
-### Prerequisites
-- Node.js 18+
-- Python 3.9+
-- AWS Account with appropriate permissions
-- Google Gemini API key
-
-### Environment Variables
-
-Create `.env` files in the appropriate directories:
-
-**Frontend (.env):**
 ```
-VITE_API_ENDPOINT=https://your-api-gateway-url
+POST /upload
 ```
 
-**Lambda Functions:**
-Set these in AWS Lambda environment variables:
-- `GEMINI_API_KEY`: Your Google Gemini API key
-- `DOCUMENT_TABLE`: DynamoDB table name for documents
-- `CHAT_HISTORY_TABLE`: DynamoDB table name for chat history
-- `EMBEDDINGS_TABLE`: DynamoDB table name for embeddings
+Body
 
-### Installation
+```
+{
+  "file": File,
+  "sessionId": "string"
+}
+```
 
-1. **Frontend Setup:**
-```bash
+---
+
+### Chat with AI Assistant
+
+```
+POST /chat
+```
+
+Body
+
+```
+{
+  "sessionId": "string",
+  "message": "string",
+  "role": "doctor | patient | asha"
+}
+```
+
+---
+
+### Get Health Dashboard
+
+```
+GET /dashboard?sessionId=<sessionId>
+```
+
+---
+
+### Export Report
+
+```
+POST /export
+```
+
+---
+
+# 🛠 Setup & Deployment
+
+## Prerequisites
+
+* Node.js 18+
+* Python 3.9+
+* AWS account
+* Google Gemini API Key
+
+---
+
+## Frontend Setup
+
+```
 cd frontend
 npm install
 npm run build
 ```
 
-2. **Lambda Setup:**
-```bash
+---
+
+## Backend Setup
+
+```
 cd lambda
-# Install dependencies for each Lambda function
-cd rag && pip install -r requirements.txt
-cd ../dashboard && pip install -r requirements.txt
-# ... repeat for other Lambda functions
+pip install -r requirements.txt
 ```
 
-3. **Infrastructure Deployment:**
-```bash
+---
+
+## Deploy Infrastructure
+
+```
 cd infrastructure
 npm install
 cdk deploy
 ```
 
-## API Endpoints
+---
 
-### Upload Document
-```
-POST /upload
-Body: { file: File, sessionId: string }
-Response: { documentId: string, status: string }
-```
+# 🔐 Security
 
-### Chat/RAG
-```
-POST /chat
-Body: { 
-  sessionId: string, 
-  message: string, 
-  role: 'doctor' | 'patient' | 'asha',
-  chatHistory: Array
-}
-Response: { answer: string, chatHistory: Array }
-```
+* API keys stored in environment variables
+* S3 encryption enabled
+* DynamoDB encryption at rest
+* IAM least privilege access
+* Sensitive data removed from logs
 
-### Get Dashboard
-```
-GET /dashboard?sessionId=<sessionId>
-Response: { metrics: Array, timestamp: string }
-```
+---
 
-### Export PDF
-```
-POST /export
-Body: { sessionId: string }
-Response: { pdfUrl: string }
-```
+# 📊 Performance
 
-## Testing
+Typical response times:
 
-### Frontend Tests
-```bash
-cd frontend
-npm run test
-```
+Dashboard generation: **<500ms**
+Chat response: **~3 seconds**
+Document extraction: **1–3 seconds**
 
-### Lambda Tests
-```bash
-cd lambda/rag
-pytest tests/
-```
+---
 
-## Security
+# ⚠️ Disclaimer
 
-- All API keys are stored in AWS Lambda environment variables (not in code)
-- CORS is configured for API Gateway
-- S3 buckets use AES-256 encryption
-- DynamoDB tables use encryption at rest
-- IAM roles follow least privilege principle
-- Sensitive medical data is redacted from logs
+This AI system provides **informational insights only** and does **not provide medical diagnosis**.
 
-## Performance
+Users should always consult licensed healthcare professionals.
 
-- Dashboard Lambda: <500ms
-- Chat Lambda: <3s
-- Dashboard Component render: <100ms
-- FAISS search: <500ms for 10,000 vectors
+---
 
-## Correctness Properties
+# 📜 License
 
-The system implements 36 correctness properties validated through property-based testing:
-
-1. Metric Extraction Completeness
-2. Reference Range Assignment
-3. Status Indicator Accuracy
-4. Most Recent Metric Aggregation
-5. Multiple Document Context Combination
-6. Metric Category Grouping
-7. Missing Metrics Not Displayed
-8. Chat Response Structure Completeness
-9. Important Findings Array Bounds
-10. Suggested Action Array Bounds
-... and 26 more properties
-
-See `.kiro/specs/health-insights-ux-improvements/` for detailed specifications.
-
-## Documentation
-
-- **Requirements**: `.kiro/specs/health-insights-ux-improvements/requirements.md`
-- **Design**: `.kiro/specs/health-insights-ux-improvements/design.md`
-- **Tasks**: `.kiro/specs/health-insights-ux-improvements/tasks.md`
-
-## Disclaimer
-
-This AI system provides informational insights only and does not provide medical diagnosis. Always consult a licensed healthcare professional.
-
-## License
-
-This project is provided for educational and evaluation purposes.
-
-## Support
-
-For questions or issues, please refer to the specification documents in `.kiro/specs/`.
+This project is provided for **educational and evaluation purposes**.
